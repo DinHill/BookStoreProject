@@ -1,38 +1,42 @@
 package controller;
 
+import model.Book;
 import service.OrderService;
+import util.StackADT;
 
 import java.util.Scanner;
 
 public class OrderController {
-    private OrderService orderService = new OrderService();
+    private OrderService orderService;
 
-    // Load orders to set the correct order ID counter
+    public OrderController(StackADT<Book> bookStack) {
+        this.orderService = new OrderService(bookStack);
+    }
+
     public void loadOrders() {
         orderService.loadOrders();
     }
 
-    // Place a new order
+    public void saveOrders() {
+        orderService.saveOrders();
+    }
+
     public void placeOrder(Scanner scanner, String customerName) {
         orderService.placeOrder(scanner, customerName);
     }
 
-    // Process the next order in the queue
-    public void processOrder() {
-        orderService.processOrder();
-    }
-
-    // View all orders
-    public void viewOrders() {
-        orderService.viewOrders();
-    }
-
-    // View orders for a specific customer
     public void viewMyOrders(Scanner scanner, String customerName) {
         orderService.viewMyOrders(scanner, customerName);
     }
 
-    // Search for an order by its ID
+    public void processOrder() {
+        orderService.processOrder();
+    }
+
+    public void viewOrders() {
+        orderService.viewOrders();
+    }
+
     public void searchOrder(Scanner scanner) {
         orderService.searchOrder(scanner);
     }

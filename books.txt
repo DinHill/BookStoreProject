@@ -1,20 +1,20 @@
-1,To Kill a Mockingbird,Harper Lee,5,15.99
-2,1984,George Orwell,15,12.99
-3,The Great Gatsby,F. Scott Fitzgerald,8,10.99
-4,The Catcher in the Rye,J.D. Salinger,12,14.99
-5,The Hobbit,J.R.R. Tolkien,20,25.99
-6,Pride and Prejudice,Jane Austen,18,9.99
-7,The Lord of the Rings,J.R.R. Tolkien,25,30.99
-8,Harry Potter and the Sorcerer's Stone,J.K. Rowling,30,20.99
-9,The Chronicles of Narnia,C.S. Lewis,22,19.99
-10,Animal Farm,George Orwell,14,8.99
-11,Moby-Dick,Herman Melville,5,11.99
-12,War and Peace,Leo Tolstoy,7,13.99
-13,The Odyssey,Homer,9,10.99
-14,Crime and Punishment,Fyodor Dostoevsky,11,14.99
-15,The Brothers Karamazov,Fyodor Dostoevsky,6,16.99
-16,Brave New World,Aldous Huxley,13,12.99
-17,Jane Eyre,Charlotte Brontë,17,9.99
-18,Wuthering Heights,Emily Brontë,16,8.99
-19,The Divine Comedy,Dante Alighieri,4,18.99
-20,The Iliad,Homer,10,10.99
+1,The Great Gatsby,F. Scott Fitzgerald,20,10.99
+2,To Kill a Mockingbird,Harper Lee,10,7.99
+3,1984,George Orwell,20,8.99
+4,Pride and Prejudice,Jane Austen,12,6.99
+5,The Catcher in the Rye,J.D. Salinger,18,9.99
+6,The Hobbit,J.R.R. Tolkien,25,12.99
+7,Harry Potter and the Sorcerer's Stone,J.K. Rowling,30,14.99
+8,The Lord of the Rings,J.R.R. Tolkien,10,19.99
+9,The Chronicles of Narnia,C.S. Lewis,22,11.99
+10,Animal Farm,George Orwell,17,5.99
+11,The Da Vinci Code,Dan Brown,14,9.99
+12,The Alchemist,Paulo Coelho,20,10.99
+13,The Hunger Games,Suzanne Collins,25,8.99
+14,The Fault in Our Stars,John Green,18,7.99
+15,The Girl on the Train,Paula Hawkins,15,9.99
+16,Gone Girl,Gillian Flynn,12,8.99
+17,The Maze Runner,James Dashner,20,7.99
+18,Divergent,Veronica Roth,22,8.99
+19,The Book Thief,Markus Zusak,18,9.99
+20,The Shining,Stephen King,15,10.99

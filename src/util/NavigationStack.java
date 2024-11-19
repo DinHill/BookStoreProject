@@ -1,9 +1,7 @@
 package util;
 
-import java.util.Stack;
-
 public class NavigationStack {
-    private Stack<String> stack = new Stack<>();
+    private StackADT<String> stack = new StackADT<>();
 
     public void pushPage(String page) {
         stack.push(page);

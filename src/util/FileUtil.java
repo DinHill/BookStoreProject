@@ -2,12 +2,11 @@ package util;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FileUtil {
     // Read lines from a file
-    public static List<String> readLines(String filename) {
-        List<String> lines = new ArrayList<>();
+    public static ArrayListADT<String> readLines(String filename) {
+        ArrayListADT<String> lines = new ArrayListADT<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -20,10 +19,10 @@ public class FileUtil {
     }
 
     // Write lines to a file
-    public static void writeLines(String filename, List<String> lines) {
+    public static void writeLines(String filename, ArrayListADT<String> lines) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            for (String line : lines) {
-                writer.write(line);
+            for (int i = 0; i < lines.size(); i++) {
+                writer.write(lines.get(i));
                 writer.newLine();
             }
         } catch (IOException e) {

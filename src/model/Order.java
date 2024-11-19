@@ -11,11 +11,13 @@ public class Order implements Serializable {
     private int id;
     private Customer customer;
     private Book[] books;
+    private String status;
 
     public Order(Customer customer, Book[] books) {
         this.id = ++idCounter;
         this.customer = customer;
         this.books = books;
+        this.status = "Pending"; // Default status is Pending
     }
 
     public static void setIdCounter(int idCounter) {
@@ -38,6 +40,14 @@ public class Order implements Serializable {
         return books;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public double getTotalPrice() {
         double totalPrice = 0;
         for (Book book : books) {
@@ -48,6 +58,6 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Order{id=%d, customer=%s, books=%s}", id, customer, Arrays.toString(books));
+        return String.format("Order{id=%d, customer=%s, books=%s, status=%s}", id, customer, Arrays.toString(books), status);
     }
 }

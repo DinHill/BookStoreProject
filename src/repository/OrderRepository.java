@@ -3,55 +3,79 @@ package repository;
 import model.Book;
 import model.Customer;
 import model.Order;
+import util.ArrayListADT;
 import util.FileUtil;
-
-import java.util.ArrayList;
-import java.util.List;
+import util.QueueADT;
 
 public class OrderRepository {
     private static final String ORDERS_FILE = "orders.txt";
+    private QueueADT<Order> orderQueue = new QueueADT<>();
 
-    // Get all orders from the file
-    public List<Order> getAllOrders() {
-        List<String> lines = FileUtil.readLines(ORDERS_FILE);
-        List<Order> orders = new ArrayList<>();
-        int maxId = 0;
-        for (String line : lines) {
+    // Load all orders from the file into the queue
+    public void loadOrders() {
+        ArrayListADT<String> lines = FileUtil.readLines(ORDERS_FILE);
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
             String[] parts = line.split(";");
-            if (parts.length == 3) {
+            if (parts.length == 4) { // Update to handle status
                 String[] customerParts = parts[0].split(",");
                 Customer customer = new Customer(customerParts[0], customerParts[1]);
                 String[] bookParts = parts[1].split(",");
-                List<Book> books = new ArrayList<>();
-                for (String bookPart : bookParts) {
-                    String[] bookDetails = bookPart.split(":");
-                    books.add(new Book(Integer.parseInt(bookDetails[0]), bookDetails[1], bookDetails[2], Integer.parseInt(bookDetails[3]), Double.parseDouble(bookDetails[4])));
+                Book[] books = new Book[bookParts.length / 5];
+                for (int j = 0; j < bookParts.length; j += 5) {
+                    books[j / 5] = new Book(
+                            Integer.parseInt(bookParts[j]),
+                            bookParts[j + 1],
+                            bookParts[j + 2],
+                            Integer.parseInt(bookParts[j + 3]),
+                            Double.parseDouble(bookParts[j + 4])
+                    );
                 }
-                Order order = new Order(customer, books.toArray(new Book[0]));
+                Order order = new Order(customer, books);
                 order.setId(Integer.parseInt(parts[2]));
-                orders.add(order);
-                if (order.getId() > maxId) {
-                    maxId = order.getId();
-                }
+                order.setStatus(parts[3]); // Set status
+                orderQueue.enqueue(order);
             }
         }
-        Order.setIdCounter(maxId);
-        return orders;
     }
 
-    // Save all orders to the file
-    public void saveOrders(List<Order> orders) {
-        List<String> lines = new ArrayList<>();
-        for (Order order : orders) {
-            StringBuilder line = new StringBuilder();
-            line.append(order.getCustomer().getName()).append(",").append(order.getCustomer().getAddress()).append(";");
+    // Save all orders from the queue to the file
+    public void saveOrders() {
+        ArrayListADT<String> lines = new ArrayListADT<>();
+        for (int i = 0; i < orderQueue.size(); i++) {
+            Order order = orderQueue.get(i);
+            StringBuilder bookString = new StringBuilder();
             for (Book book : order.getBooks()) {
-                line.append(book.getId()).append(":").append(book.getTitle()).append(":").append(book.getAuthor()).append(":").append(book.getQuantity()).append(":").append(book.getPrice()).append(",");
+                bookString.append(book.getId()).append(",")
+                        .append(book.getTitle()).append(",")
+                        .append(book.getAuthor()).append(",")
+                        .append(book.getQuantity()).append(",")
+                        .append(book.getPrice()).append(",");
             }
-            line.deleteCharAt(line.length() - 1); // Remove last comma
-            line.append(";").append(order.getId());
-            lines.add(line.toString());
+            lines.add(order.getCustomer().getName() + "," + order.getCustomer().getAddress() + ";" + bookString + ";" + order.getId() + ";" + order.getStatus());
         }
         FileUtil.writeLines(ORDERS_FILE, lines);
+    }
+
+    // Add an order to the queue
+    public void addOrder(Order order) {
+        orderQueue.enqueue(order);
+    }
+
+    // Process the next pending order in the queue
+    public Order processOrder() {
+        for (int i = 0; i < orderQueue.size(); i++) {
+            Order order = orderQueue.get(i);
+            if ("Pending".equals(order.getStatus())) {
+                order.setStatus("Processing");
+                return order;
+            }
+        }
+        return null;
+    }
+
+    // Get all orders from the queue
+    public QueueADT<Order> getAllOrders() {
+        return orderQueue;
     }
 }

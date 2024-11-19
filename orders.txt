@@ -1,4 +1,0 @@
-Jane Smith,456 Elm St;3:The Great Gatsby:F. Scott Fitzgerald:1:10.99,5:The Hobbit:J.R.R. Tolkien:3:25.99;2
-Hiu,04 Do Anh Han;1:To Kill a Mockingbird:Harper Lee:2:15.99,4:The Catcher in the Rye:J.D. Salinger:3:14.99;3
-Hiu,167 Be Van Dan;12:War and Peace:Leo Tolstoy:2:13.99,17:Jane Eyre:Charlotte Brontë:1:9.99;4
-Testing,567 Test;2:1984:George Orwell:2:12.99,8:Harry Potter and the Sorcerer's Stone:J.K. Rowling:2:20.99;5
